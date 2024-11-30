@@ -1,0 +1,58 @@
+body{
+    text-align: center;
+    align-items: center;
+    margin: 100px auto;
+    background: linear-gradient(#1D3557,#457B9D, #1D3557);
+    font-family: "Roboto Condensed", sans-serif;
+
+}
+.calculator-display{
+    height: 149px;
+    width: 380px;
+    margin: auto;
+    text-align: right;
+    padding: 10px;
+    background: #F1FAEE;
+    border-bottom: 2px black solid;
+    
+}
+button{
+    width: 100px;
+    height: 100px;
+    font-size: 40px;
+    border: none;
+}
+.buttons-grid{
+    width: 400px;
+    margin: auto;
+    display: flex;
+    height: 500px;
+    align-items: center;
+}
+.button-column{
+    display: inline;
+}
+#equal-btn{
+    height: 400px;
+    background: #E63946;
+}
+.num-btn{
+    background: #F1FAEE;
+}
+.action-btn{
+    background: #A8DADC;
+}
+h1{
+    font-size:  40px;
+}
+h2{
+    font-size: 30px;
+}
+
+
+.roboto-condensed-kanit {
+  font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}

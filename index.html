@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>simple calculator app</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Orbitron:wght@400..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="calculator-display">
+            <h2 id="second-el">0</h2>
+            <h1 id="first-el">0</h1>
+        </div>
+        <div class="buttons-grid">
+            <div class="button-column">
+                <button onclick="plus()" class="action-btn">+</button>
+                <button onclick="digit(7)" class="num-btn">7</button>
+                <button onclick="digit(4)" class="num-btn">4</button>
+                <button onclick="digit(1)" class="num-btn">1</button>
+                <button onclick="digit(0)" class="num-btn">0</button>
+            </div>
+            <div class="button-column">
+                <button onclick="minus()" class="action-btn">-</button>
+                <button onclick="digit(8)" class="num-btn">8</button>
+                <button onclick="digit(5)" class="num-btn">5</button>
+                <button onclick="digit(2)" class="num-btn">2</button>
+                <button onclick="dot()" class="action-btn">.</button>
+            </div>
+            <div class="button-column">
+                <button onclick="multiply()" class="action-btn">x</button>
+                <button onclick="digit(9)" class="num-btn">9</button>
+                <button onclick="digit(6)" class="num-btn">6</button>
+                <button onclick="digit(3)" class="num-btn">3</button>
+                <button onclick="clearDigits()" class="action-btn">C</button>
+            </div>
+            <div class="button-column">
+                <button onclick="divide()" class="action-btn">:</button>
+                <button id="equal-btn" onclick="equals()">=</button>
+            </div>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>
