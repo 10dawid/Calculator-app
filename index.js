@@ -1,42 +1,93 @@
 let firstEL = document.querySelector("#first-el")
 let secondEL = document.querySelector("#second-el")
 
-let x = 0
-let y = 0
-let decimal = false
+let x = ""
+let y = ""
 let plusOp = false
-
+let minusOp = false
+let multiplyOp = false
+let divideOp = false
 
 function digit(n){
-    x *= 10
     x += n
     firstEL.textContent = x
 }
-function plus(){
+function plusF(){
     y = x
-    x = 0
+    x = ""
     secondEL.textContent = y
     firstEL.textContent = x
     plusOp = true
 }
-function minus(){}
-function multiply(){}
-function divide(){}
-function dot(){}
+function minusF(){
+    y = x
+    x = ""
+    secondEL.textContent = y
+    firstEL.textContent = x
+    minusOp = true
+}
+function multiplyF(){
+    y = x
+    x = ""
+    secondEL.textContent = y
+    firstEL.textContent = x
+    multiplyOp = true
+}
+function divideF(){
+    y = x
+    x = ""
+    secondEL.textContent = y
+    firstEL.textContent = x
+    divideOp = true
+}
 function equals(){
+    let result
     if (plusOp){
-        x = x + y
-        y = 0
-        firstEL.textContent = x
+        result = Math.round((parseFloat(y) + parseFloat(x))*10000)/10000
+        x = ""
+        y = ""
+        firstEL.textContent = result
         secondEL.textContent = y
+        plusOp = false
+    }
+    else if (minusOp){
+        result = Math.round((parseFloat(y) - parseFloat(x))*10000)/10000
+        x = ""
+        y = ""
+        firstEL.textContent = result
+        secondEL.textContent = y
+        minusOp = false
+    }
+    else if (multiplyOp){
+        result = Math.round((parseFloat(y) * parseFloat(x))*10000)/10000
+        x = ""
+        y = ""
+        firstEL.textContent = result
+        secondEL.textContent = y
+        multiplyOp = false
+    }
+    else if (divideOp){
+        result = Math.round((parseFloat(y) / parseFloat(x))*1000000)/1000000
+        x = ""
+        y = ""
+        firstEL.textContent = result
+        secondEL.textContent = y
+        divideOp = false
     }
 }
 function clearDigits(){
-    x = 0
-    y = 0
-    let plusOp = false
-    firstEL.textContent = x
-    secondEL.textContent = y
+    x = ""
+    y = ""
+    plusOp = false
+    plusOp = false
+    minusOp = false
+    multiplyOp = false
+    divideOp = false
+    firstEL.textContent = "0"
+    secondEL.textContent = "0"
 }
-
+function clearEntry(){
+    x = x.slice(0,-1)
+    firstEL.textContent = x
+}
 
