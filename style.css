@@ -56,3 +56,6 @@ h2{
   font-weight: 200;
   font-style: normal;
 }
+button:hover{
+    text-shadow: 0px 0px 3px black;
+}
