@@ -1,93 +1,95 @@
-let firstEL = document.querySelector("#first-el")
-let secondEL = document.querySelector("#second-el")
+const firstEL = document.querySelector("#first-el")
+const secondEL = document.querySelector("#second-el")
 
 let x = ""
 let y = ""
-let plusOp = false
-let minusOp = false
-let multiplyOp = false
-let divideOp = false
+
+let operationStatus = [false,false,false,false]
+let operators = ['+', '-', '*', '/']
+let inProgress = false
+
 
 function digit(n){
-    x += n
-    firstEL.textContent = x
+    if(n === '.'){
+        if (x.charAt(x.length - 1) != '.'){
+            x += n
+            firstEL.textContent = x
+        }
+    }
+    else{
+        x += n
+        firstEL.textContent = x
+    }
 }
-function plusF(){
-    y = x
-    x = ""
-    secondEL.textContent = y
-    firstEL.textContent = x
-    plusOp = true
+
+function operation(operator){
+    if (inProgress){
+        equals()
+    }
+    switch (operator) {
+        case '+':
+            operationStatus[0] = true
+            y = x
+            x = ""
+            firstEL.textContent = "0"
+            secondEL.textContent = y
+            break;
+        case '-':
+            operationStatus[1] = true
+            y = x
+            x = ""
+            firstEL.textContent = "0"
+            secondEL.textContent = y
+            break;
+        case '*':
+            operationStatus[2] = true
+            y = x
+            x = ""
+            firstEL.textContent = "0"
+            secondEL.textContent = y
+            break;
+        case '/':
+            operationStatus[3] = true
+            y = x
+            x = ""
+            firstEL.textContent = "0"
+            secondEL.textContent = y
+            break;
+        default:
+            console.log("default case");
+            break;
+    }
 }
-function minusF(){
-    y = x
-    x = ""
-    secondEL.textContent = y
-    firstEL.textContent = x
-    minusOp = true
-}
-function multiplyF(){
-    y = x
-    x = ""
-    secondEL.textContent = y
-    firstEL.textContent = x
-    multiplyOp = true
-}
-function divideF(){
-    y = x
-    x = ""
-    secondEL.textContent = y
-    firstEL.textContent = x
-    divideOp = true
-}
-function equals(){
+
+function equals(){ // add actions convert strings to ints 
     let result
-    if (plusOp){
-        result = Math.round((parseFloat(y) + parseFloat(x))*10000)/10000
-        x = ""
-        y = ""
-        firstEL.textContent = result
-        secondEL.textContent = y
-        plusOp = false
+    if(operationStatus[0]){
+        console.log("plus op")
+        operationStatus[0] = false
     }
-    else if (minusOp){
-        result = Math.round((parseFloat(y) - parseFloat(x))*10000)/10000
-        x = ""
-        y = ""
-        firstEL.textContent = result
-        secondEL.textContent = y
-        minusOp = false
+    else if(operationStatus[1]){
+        console.log("minus op")
+        operationStatus[1] = false
     }
-    else if (multiplyOp){
-        result = Math.round((parseFloat(y) * parseFloat(x))*10000)/10000
-        x = ""
-        y = ""
-        firstEL.textContent = result
-        secondEL.textContent = y
-        multiplyOp = false
+    else if(operationStatus[2]){
+        console.log("multiply op")
+        operationStatus[2] = false
     }
-    else if (divideOp){
-        result = Math.round((parseFloat(y) / parseFloat(x))*1000000)/1000000
-        x = ""
-        y = ""
-        firstEL.textContent = result
-        secondEL.textContent = y
-        divideOp = false
+    else if(operationStatus[3]){
+        console.log("divide op")
+        operationStatus[3] = false
     }
+    inProgress = false
 }
 function clearDigits(){
     x = ""
     y = ""
-    plusOp = false
-    plusOp = false
-    minusOp = false
-    multiplyOp = false
-    divideOp = false
+    operationStatus = [false,false,false,false]
     firstEL.textContent = "0"
     secondEL.textContent = "0"
 }
 function clearEntry(){
-    x = x.slice(0,-1)
+    x = x.length > 1 ? x.slice(0,-1) : "0"
     firstEL.textContent = x
 }
 
