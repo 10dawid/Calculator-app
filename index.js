@@ -1,95 +1,97 @@
-const firstEL = document.querySelector("#first-el")
-const secondEL = document.querySelector("#second-el")
+const displayEL = document.querySelector("#display")
 
 let x = ""
 let y = ""
 
-let operationStatus = [false,false,false,false]
+let opStatus = [false,false,false,false]
 let operators = ['+', '-', '*', '/']
 let inProgress = false
-
 
 function digit(n){
     if(n === '.'){
         if (x.charAt(x.length - 1) != '.'){
-            x += n
-            firstEL.textContent = x
+             x += n
+            displayEL.textContent = x
         }
     }
     else{
         x += n
-        firstEL.textContent = x
+        displayEL.textContent = x
     }
 }
 
 function operation(operator){
-    if (inProgress){
-        equals()
-    }
+    equals()
     switch (operator) {
         case '+':
-            operationStatus[0] = true
+            opStatus[0] = true
+            displayEL.textContent = "0"
             y = x
             x = ""
-            firstEL.textContent = "0"
-            secondEL.textContent = y
             break;
         case '-':
-            operationStatus[1] = true
+            opStatus[1] = true
+            displayEL.textContent = "0"
             y = x
             x = ""
-            firstEL.textContent = "0"
-            secondEL.textContent = y
             break;
         case '*':
-            operationStatus[2] = true
+            opStatus[2] = true
+            displayEL.textContent = "0"
             y = x
             x = ""
-            firstEL.textContent = "0"
-            secondEL.textContent = y
             break;
         case '/':
-            operationStatus[3] = true
+            opStatus[3] = true
+            displayEL.textContent = "0"
             y = x
             x = ""
-            firstEL.textContent = "0"
-            secondEL.textContent = y
             break;
         default:
-            console.log("default case");
             break;
     }
 }
 
-function equals(){ // add actions convert strings to ints 
+function equals(){
     let result
-    if(operationStatus[0]){
-        console.log("plus op")
-        operationStatus[0] = false
+    if(opStatus[0]){
+        result = (parseFloat(x) + parseFloat(y))
+        x = result.toString()
+        y = ""
+        opStatus[0] = false
+        displayEL.textContent = result
     }
-    else if(operationStatus[1]){
-        console.log("minus op")
-        operationStatus[1] = false
+    else if(opStatus[1]){
+        result = -(parseFloat(x) - parseFloat(y))
+        console.log(result);
+        x = result.toString()
+        y = ""
+        opStatus[1] = false
+        displayEL.textContent = result
     }
-    else if(operationStatus[2]){
-        console.log("multiply op")
-        operationStatus[2] = false
+    else if(opStatus[2]){
+        result = Math.round((parseFloat(x) * parseFloat(y)) * 100000) / 100000
+        x = result.toString()
+        y = ""
+        opStatus[2] = false
+        displayEL.textContent = result
     }
-    else if(operationStatus[3]){
-        console.log("divide op")
-        operationStatus[3] = false
+    else if(opStatus[3]){
+        result = Math.round((parseFloat(x) / parseFloat(y)) * 100000) / 100000
+        x = result.toString()
+        y = ""
+        opStatus[3] = false
+        displayEL.textContent = result
     }
-    inProgress = false
 }
 function clearDigits(){
     x = ""
     y = ""
-    operationStatus = [false,false,false,false]
-    firstEL.textContent = "0"
-    secondEL.textContent = "0"
+    opStatus = [false,false,false,false]
+    displayEL.textContent = "0"
 }
 function clearEntry(){
     x = x.length > 1 ? x.slice(0,-1) : "0"
-    firstEL.textContent = x
+    displayEL.textContent = x
 }
 
